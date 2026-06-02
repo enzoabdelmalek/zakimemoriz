@@ -1,65 +1,68 @@
-import Image from "next/image";
+import Link from "next/link";
+import { categories } from "@/lib/data";
 
-export default function Home() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+export default function HomePage() {
+    const total = categories.reduce((acc, c) => acc + c.photos.length, 0);
+
+    return (
+        <div className="page">
+            {/* ─── Hero intro ─── */}
+            <section className="hero">
+                <div className="hero-inner">
+                    <div className="hero-left">
+                        <p className="hero-label">Photographe · Paris</p>
+                        <h1 className="hero-title">
+                            Capturer<br />
+                            l'instant<br />
+                            <em>juste.</em>
+                        </h1>
+                    </div>
+                    <div className="hero-right">
+                        <p className="hero-desc">
+                            Spécialisé en reportage événementiel et portrait,
+                            zakimemoriz immortalise les moments qui comptent —
+                            des coulisses aux premières loges.
+                        </p>
+                        <div className="hero-stats">
+                            <div className="hero-stat">
+                                <span className="hero-stat-num">{categories.length}</span>
+                                <span className="hero-stat-label">Projets</span>
+                            </div>
+                            <div className="hero-stat-divider" />
+                            <div className="hero-stat">
+                                <span className="hero-stat-num">{total}+</span>
+                                <span className="hero-stat-label">Photos</span>
+                            </div>
+                        </div>
+                        <Link href="/projets" className="hero-cta">
+                            Voir tous les projets →
+                        </Link>
+                    </div>
+                </div>
+            </section>
+
+            {/* ─── Label avant grille ─── */}
+            <div className="grid-label">
+                <span>Sélection</span>
+                <div className="grid-label-line" />
+            </div>
+
+            {/* ─── Grille projets ─── */}
+            <div className="category-grid">
+                {categories.map((cat, i) => (
+                    <Link
+                        key={cat.slug}
+                        href={`/projets/${cat.slug}`}
+                        className={`category-item${i === 0 ? " featured" : ""}`}
+                    >
+                        <img src={cat.cover} alt={cat.title} />
+                        <div className="category-item-overlay">
+                            <p className="category-item-title">{cat.title}</p>
+                            <p className="category-item-count">{cat.photos.length} photos</p>
+                        </div>
+                    </Link>
+                ))}
+            </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+    );
 }
