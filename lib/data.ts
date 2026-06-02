@@ -18,6 +18,7 @@ export const categories: Category[] = [
         description: "Shooting Aya Nakamura.",
         cover: "/assets/Aya Nakamura/IMG_7318.JPG",
         photos: [
+            { src: "/assets/Aya Nakamura/IMG_7635.JPG" },
             { src: "/assets/Aya Nakamura/IMG_7318.JPG" },
             { src: "/assets/Aya Nakamura/IMG_7320.JPG" },
             { src: "/assets/Aya Nakamura/IMG_7324.JPG" },
@@ -42,7 +43,6 @@ export const categories: Category[] = [
             { src: "/assets/Aya Nakamura/IMG_7591.JPG" },
             { src: "/assets/Aya Nakamura/IMG_7591 2.JPG" },
             { src: "/assets/Aya Nakamura/IMG_7630.JPG" },
-            { src: "/assets/Aya Nakamura/IMG_7635.JPG" },
         ],
     },
     {

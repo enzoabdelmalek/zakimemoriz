@@ -1,12 +1,20 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Geist, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import Header from "@/app/components/Header";
+import Footer from "@/app/components/Footer";
 
 const geist = Geist({
-    variable: "--font-geist-sans",
+    variable: "--font-sans",
     subsets: ["latin"],
-    weight: ["400", "500", "600", "700"],
+    weight: ["400", "500", "600"],
+});
+
+const cormorant = Cormorant_Garamond({
+    variable: "--font-display",
+    subsets: ["latin"],
+    weight: ["300", "400", "500", "600", "700"],
+    style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -16,10 +24,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="fr" className={geist.variable}>
+        <html lang="fr" className={`${geist.variable} ${cormorant.variable}`}>
             <body>
                 <Header />
                 <main>{children}</main>
+                <Footer />
             </body>
         </html>
     );
