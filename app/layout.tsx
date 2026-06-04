@@ -3,6 +3,8 @@ import { Geist, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
+import PageTransition from "@/app/components/PageTransition";
+import ScrollAnimations from "@/app/components/ScrollAnimations";
 
 const geist = Geist({
     variable: "--font-sans",
@@ -27,7 +29,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <html lang="fr" className={`${geist.variable} ${cormorant.variable}`}>
             <body>
                 <Header />
-                <main>{children}</main>
+                <ScrollAnimations />
+                <main>
+                    <PageTransition>{children}</PageTransition>
+                </main>
                 <Footer />
             </body>
         </html>

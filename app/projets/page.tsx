@@ -60,6 +60,7 @@ export default function ProjetsPage() {
                         {cat.description && (
                             <p className="project-section-desc">{cat.description}</p>
                         )}
+                        {cat.date && <p className="project-section-date">{cat.date}</p>}
                         <p className="project-section-count">{cat.photos.length} photos</p>
                         <Link href={`/projets/${cat.slug}`} className="project-section-link">
                             Voir le projet →
